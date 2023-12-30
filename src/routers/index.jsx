@@ -9,7 +9,7 @@ function AppRouter() {
         <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<LogIn />} />
-            <Route path='/address' element={<Address />}></Route>
+            <Route path='/hệ-thống-cửa-hàng' element={<Address />}></Route>
         </Routes>
     );
 }

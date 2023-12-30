@@ -3,6 +3,7 @@ import userImg from '../../../public/circle-user.png'
 import searchImg from '../../../public/search .png'
 import shoppingBagImg from '../../../public/shopping-bag-add.png'
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 
 
 function TopBar() {
@@ -31,41 +32,48 @@ function TopBar() {
                 </a>
             </div>
             <div className='flex gap-4 pt-3'>
-                <button
+                <NavLink
+                    to={'/'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('TRANG CHỦ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('TRANG CHỦ')}>
                     TRANG CHỦ
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to={'/hành-trình-tử-tế'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HÀNH TRÌNH TỬ TẾ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('HÀNH TRÌNH TỬ TẾ')}>
                     HÀNH TRÌNH TỬ TẾ
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to={'/sản-phẩm'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('SẢN PHẨM') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('SẢN PHẨM')}>
                     SẢN PHẨM
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to={'/về-ANNA'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('VỀ ANNA') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('VỀ ANNA')}>
                     VỀ ANNA
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to={'/blog'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('BLOG') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
-                    onClick={() => handleButtonClick('')}>
+                    onClick={() => handleButtonClick('BLOG')}>
                     BLOG
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to={'/hệ-thống-cửa-hàng'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HỆ THỐNG CỬA HÀNG') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('HỆ THỐNG CỬA HÀNG')}>
                     HỆ THỐNG CỬA HÀNG
-                </button>
-                <button
+                </NavLink>
+                <NavLink
+                    to={'/liên-hệ'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('LIÊN HỆ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('LIÊN HỆ')}>
                     LIÊN HỆ
-                </button>
+                </NavLink>
             </div>
             <div className='pt-3 w-[15%] flex justify-between'>
                 <button>
