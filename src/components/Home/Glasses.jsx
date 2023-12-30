@@ -1,15 +1,6 @@
 import 'swiper/css';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-
 const Glasses = () => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-    };
     return (
         <div className='flex w-[1300px] justify-start flex-col mt-2'>
             <div className="flex">
