@@ -39,7 +39,7 @@ function TopBar() {
                     TRANG CHỦ
                 </NavLink>
                 <NavLink
-                    to={'/hành-trình-tử-tế'}
+                    to={'/hanh-trnh-tu-te'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HÀNH TRÌNH TỬ TẾ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('HÀNH TRÌNH TỬ TẾ')}>
                     HÀNH TRÌNH TỬ TẾ
@@ -51,7 +51,7 @@ function TopBar() {
                     SẢN PHẨM
                 </NavLink>
                 <NavLink
-                    to={'/về-ANNA'}
+                    to={'/ve-anna'}
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('VỀ ANNA') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('VỀ ANNA')}>
                     VỀ ANNA
