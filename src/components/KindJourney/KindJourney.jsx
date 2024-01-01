@@ -4,6 +4,9 @@ import { Player } from 'video-react';
 import 'video-react/dist/video-react.css'
 import Draggable from 'react-draggable';
 import { Resizable } from 'react-resizable';
+import FaceBookIcon from "../../../public/icon/facebookIcon";
+import TwitterIcon from "../../../public/icon/twitterIcon";
+import InstagramIcon from "../../../public/icon/instagramIcon";
 const KindJourney = () => {
     const [showMore, setShowMore] = useState(false)
     const hiddenText = () => (
@@ -770,24 +773,34 @@ const KindJourney = () => {
                     </div>
                 </div>
             </div>
-            <div className='w-full flex justify-around mt-20 bg-[url("/public/BG-footer.jpeg")]'>
+            <div className='w-full mt-20 bg-[url("/public/BG-footer.jpeg")]'>
+                <div className="bg-emerald-50/80 w-full flex justify-around">
                     <div className='flex flex-col'>
-                        <p>Kết nối yêu thương</p>
-                        <a href="tel:0888071297">Liện hệ: 0888.071.297</a>
-                        <a href="mailto:kinhmatanna@gmail.com">Email: kinhmatanna@gmail.com</a>
+                        <p className="text-5xl font-bold text-teal-600/70 mt-[80px] mb-[60px]">Kết nối yêu thương</p>
+                        <a href="tel:0888071297" className="text-xl font-light"><span className="text-xl font-semibold ">📞 Liện hệ:</span> 0888.071.297</a>
+                        <a href="mailto:kinhmatanna@gmail.com" className="text-xl font-light"><span className="text-xl font-semibold ">📧 Email: </span> kinhmatanna@gmail.com</a>
                     </div>
                     <div>
-                        <div>
-
+                        <div className="flex gap-4 mt-[80px] mb-[60px]">
+                            <div style={{width: 56, height: 56, border: '1px solid black', borderRadius: '50%',display: 'flex',alignItems: 'center',justifyContent: 'center', cursor:'pointer' }} className="hover:bg-teal-600/70">
+                                <FaceBookIcon />
+                            </div>
+                            <div style={{width: 56, height: 56, border: '1px solid black', borderRadius: '50%',display: 'flex',alignItems: 'center',justifyContent: 'center', cursor:'pointer' }} className="hover:bg-teal-600/70">
+                                <TwitterIcon />
+                            </div>
+                            <div style={{width: 56, height: 56, border: '1px solid black', borderRadius: '50%',display: 'flex',alignItems: 'center',justifyContent: 'center', cursor:'pointer' }} className="hover:bg-teal-600/70">
+                                <InstagramIcon />
+                            </div>
                         </div>
-                        <div>
-                            <p>Địa điểm: </p>
-                            <p>Dự kiến 30.000+ học sinh bản CAO và XA khó khăn trong hơn 60 xã<br/> thuộc 7 huyện khó nhất của tỉnh Điện Biên: Huyện Mường Nhé,<br/> huyện Nậm Pồ, huyện Điện Biên Đông và Mường Chà, Tủa Chùa ,<br/> Mường Ảng, TP.Điện Biên Phủ, Huyện Điện Biên.</p>
-                            <p>-Tỉnh Cao Bằng: Huyện Bảo Lâm</p>
-                            <p>-Tỉnh Gia Lai</p>
-                            <p>-Tỉnh Đắk Lắk</p>
+                        <div className="mb-[80px]">
+                            <p className="text-xl font-semibold ">Địa điểm: </p>
+                            <p className="text-base font-light mt-[10px]">Dự kiến 30.000+ học sinh bản CAO và XA khó khăn trong hơn 60 xã<br/> thuộc 7 huyện khó nhất của tỉnh Điện Biên: Huyện Mường Nhé,<br/> huyện Nậm Pồ, huyện Điện Biên Đông và Mường Chà, Tủa Chùa ,<br/> Mường Ảng, TP.Điện Biên Phủ, Huyện Điện Biên.</p>
+                            <p className="text-base font-light mt-[10px]">-Tỉnh Cao Bằng: Huyện Bảo Lâm</p>
+                            <p className="text-base font-light mt-[10px]">-Tỉnh Gia Lai</p>
+                            <p className="text-base font-light mt-[10px]">-Tỉnh Đắk Lắk</p>
                         </div>
                     </div>
+                </div>
             </div>
         </Layout>
     )
