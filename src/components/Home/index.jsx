@@ -7,8 +7,11 @@ import Marketing from "../Home/Marketing"
 import Customer from "../Home/Customer"
 import Banner from './Banner'
 
+
 // import { useAuth } from '../../context/auth'
 function Home() {
+
+
     // const [auth, setAuth] = useAuth()
     return (
         <div className='flex flex-col items-center'>

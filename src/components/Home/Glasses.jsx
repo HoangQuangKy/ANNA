@@ -20,8 +20,7 @@ const Glasses = () => {
                     navigation
                     slidesPerView={2}
                     className='flex items-center w-[650px] ml-2'
-                    onSlideChange={() => console.log('slide change')}
-                    onSwiper={(swiper) => console.log(swiper)}
+
                 >
                     <SwiperSlide>
                         <img src="https://kinhmatanna.com/wp-content/uploads/2023/04/Untitled-4-01-01-02-768x983.jpg"

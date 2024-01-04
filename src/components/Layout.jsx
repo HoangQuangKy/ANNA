@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify';
 const Layout = ({ children }) => {
     // const [auth, setAuth] = useAuth()
     return (
-        <div className=" ml-20">
+        <div className="ml-20">
             <TopBar />
             <main>
                 {children}

@@ -13,10 +13,11 @@ function TopBar() {
     const handleButtonClick = (pageName) => {
         setCurrentPage(pageName);
     };
-
+    console.log(currentPage);
     const isCurrentPage = (pageName) => {
         return currentPage === pageName;
     };
+
     return (
         <div className='flex w-[1300px] min-h-[88px] items-center justify-between flex-row'>
 
@@ -69,7 +70,7 @@ function TopBar() {
                     HỆ THỐNG CỬA HÀNG
                 </NavLink>
                 <NavLink
-                    to={'/liên-hệ'}
+                    to={'/admin'} // tạm 
                     className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('LIÊN HỆ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('LIÊN HỆ')}>
                     LIÊN HỆ

@@ -2,36 +2,40 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAllAddress, getSortAddress } from '../../services';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCities, setDistricts } from '../../redux/slice/store.slice.js'
 import 'leaflet/dist/leaflet.css';
 
 
 
 function InputAddress() {
+
+    const dispatch = useDispatch()
+    const cities = useSelector((state) => state.stores.cities)
+    const districts = useSelector((state) => state.stores.districts)
     const centerVietNam = [14.0583, 108.2772];
     const zoomLevel = 6; // Cấp độ zoom phù hợp
 
     const [address, setAddress] = useState();
-    const [cities, setCities] = useState([]);
+
     const [cityName, setCityName] = useState("");
     const [districtName, setDistrictName] = useState("");
     const [selectedCity, setSelectedCity] = useState('');
-    const [districts, setDistricts] = useState([]);
     const [selectedDistrict, setSelectedDistrict] = useState('');
 
     const fetchCities = async () => {
         try {
             const response = await axios.get('https://vapi.vnappmob.com/api/province/');
-            setCities(response.data.results);
+            dispatch(setCities({ cities: response.data.results }));
         } catch (error) {
             console.error('Error fetching cities:', error);
         }
     };
-
     const fetchDistricts = async () => {
         if (selectedCity) {
             try {
                 const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${selectedCity}`);
-                setDistricts(response.data.results);
+                dispatch(setDistricts({ districts: response.data.results }))
             } catch (error) {
                 console.error('Error fetching districts:', error);
             }
@@ -74,9 +78,6 @@ function InputAddress() {
     useEffect(() => {
         getAddress();
     }, [cityName, districtName]);
-
-    console.log('getAddress', address);
-
     return (
         <div className='flex items-center justify-center mb-24'>
             <div className='flex flex-col justify-center items-center h-full'>

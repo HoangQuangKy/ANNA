@@ -2,7 +2,7 @@ import Layout from "../../components/Layout"
 import Marketing from "../../components/Home/Marketing"
 import Carousel from "./Carousel/Carousel";
 const ForAnna = () => {
-    const images = [
+    const imagesData = [
         {
             src: '/public/carousel/img-1.jpeg',
             name: 'Khánh Huyền'
@@ -72,7 +72,7 @@ const ForAnna = () => {
             </div>
             <div className="w-full mt-[110px]">
                 <div className="container mx-32">
-                    <Carousel images={images}/>
+                    <Carousel images={imagesData} />
                 </div>
             </div>
         </Layout>

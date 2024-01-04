@@ -1,11 +1,11 @@
 import React from 'react'
 
-function CreateUser() {
+function CreateBlog() {
     return (
         <div className=' text-black'>
-            HEllo aeadsakdaskd
+            Hí ae
         </div>
     )
 }
 
-export default CreateUser
+export default CreateBlog

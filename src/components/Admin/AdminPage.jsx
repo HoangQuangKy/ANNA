@@ -1,5 +1,5 @@
-import React from 'react'
-import CreateUser from './CreateUser';
+import React from 'react';
+import CreateBlog from './CreateBlog.jsx'
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd'
 import {
@@ -13,6 +13,10 @@ import {
     SwitcherOutlined,
     LogoutOutlined
 } from '@ant-design/icons';
+import ManageBlog from './ManageBlog.jsx';
+import CreateStore from './CreateStore.jsx';
+import ManageStore from './ManageStore.jsx';
+import EditStore from './EditStore.jsx';
 
 const items1 = [
     { key: '2', label: 'Logout', icon: <LogoutOutlined /> }
@@ -62,7 +66,6 @@ const items = [
 ];
 
 function AdminPage() {
-    const location = useLocation();
 
     return (
         <div className='w-full h-[100vh] flex flex-row bg-white'>
@@ -73,16 +76,16 @@ function AdminPage() {
                             {item.children ? (
                                 <Menu.SubMenu key={item.key} title={item.label} className='w-[275px]'>
                                     {item.children.map(child => (
-                                        <Menu.Item key={child.key} icon={child.icon} className='w-[275px]' selected={location.pathname.includes(child.path)}>
-                                            {/* <Link to={`/admin/${child.path}`}>{child.label}</Link> */}
-                                            <div>{child.label}</div>
+                                        <Menu.Item key={child.key} icon={child.icon} className='w-[275px]'>
+                                            <Link to={`/admin/${child.path}`}>{child.label}</Link>
+
                                         </Menu.Item>
                                     ))}
                                 </Menu.SubMenu>
                             ) : (
-                                <Menu.Item key={item.key} icon={item.icon} selected={location.pathname.includes(item.path)}>
-                                    {/* <Link to={`/admin/${item.path}`}>{item.label}</Link> */}
-                                    <div>{item.label}</div>
+                                <Menu.Item key={item.key} icon={item.icon}>
+                                    <Link to={`/admin/${item.path}`}>{item.label}</Link>
+
                                 </Menu.Item>
                             )}
                         </Menu>
@@ -100,14 +103,19 @@ function AdminPage() {
                     ))}
                 </Menu>
             </div>
-            {/* <Routes>
-                <Route path='create_film' element={<CreateUser />} />
-                <Route path='manage_film' />
-                <Route path={`editfilm/:_id`} />
-                <Route path='create_user'></Route>
-                <Route path={`update_user/:_id`}></Route>
-                <Route path='manage_user'></Route>
-            </Routes> */}
+            <Routes>
+                <Route path='create_blog' element={<CreateBlog />} />
+                <Route path='manage_blog' element={<ManageBlog />} />
+                <Route path='create_user' />
+                <Route path='update_user' />
+                <Route path='manage_user' />
+                <Route path='create_product' />
+                <Route path='manage_product' />
+                <Route path='create_store' element={<CreateStore />} />
+                <Route path='manage_store' element={<ManageStore />} />
+                <Route path={`manage_store/:id`} element={<EditStore />}></Route>
+
+            </Routes>
         </div >
     )
 }

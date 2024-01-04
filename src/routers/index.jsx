@@ -13,9 +13,9 @@ function AppRouter() {
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<LogIn />} />
             <Route path='/hệ-thống-cửa-hàng' element={<Address />}></Route>
-            <Route path='/hanh-trnh-tu-te' element={<KindJourney />} />
+            <Route path='/hanh-trinh-tu-te' element={<KindJourney />} />
             <Route path='/ve-anna' element={<ForAnna />} />
-            <Route path='/admin' element={<AdminPage />}></Route>
+            <Route path='/admin/*' element={<AdminPage />}></Route>
         </Routes>
     );
 }
