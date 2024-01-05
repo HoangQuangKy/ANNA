@@ -13,7 +13,6 @@ function TopBar() {
     const handleButtonClick = (pageName) => {
         setCurrentPage(pageName);
     };
-    console.log(currentPage);
     const isCurrentPage = (pageName) => {
         return currentPage === pageName;
     };
@@ -35,43 +34,43 @@ function TopBar() {
             <div className='flex gap-4 pt-3'>
                 <NavLink
                     to={'/'}
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('TRANG CHỦ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    className={`text-sm  font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('TRANG CHỦ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('TRANG CHỦ')}>
                     TRANG CHỦ
                 </NavLink>
                 <NavLink
-                    to={'/hanh-trnh-tu-te'}
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HÀNH TRÌNH TỬ TẾ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    to={'/hanh-trinh-tu-te'}
+                    className={`text-sm  font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HÀNH TRÌNH TỬ TẾ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('HÀNH TRÌNH TỬ TẾ')}>
                     HÀNH TRÌNH TỬ TẾ
                 </NavLink>
                 <NavLink
                     to={'/sản-phẩm'}
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('SẢN PHẨM') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    className={`text-sm  font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('SẢN PHẨM') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('SẢN PHẨM')}>
                     SẢN PHẨM
                 </NavLink>
                 <NavLink
                     to={'/ve-anna'}
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('VỀ ANNA') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    className={`text-sm font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('VỀ ANNA') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('VỀ ANNA')}>
                     VỀ ANNA
                 </NavLink>
                 <NavLink
                     to={'/blog'}
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('BLOG') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    className={`text-sm font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('BLOG') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('BLOG')}>
                     BLOG
                 </NavLink>
                 <NavLink
                     to={'/hệ-thống-cửa-hàng'}
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HỆ THỐNG CỬA HÀNG') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    className={`text-sm font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('HỆ THỐNG CỬA HÀNG') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('HỆ THỐNG CỬA HÀNG')}>
                     HỆ THỐNG CỬA HÀNG
                 </NavLink>
                 <NavLink
                     to={'/admin'} // tạm 
-                    className={`text-sm text-gray-600 font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('LIÊN HỆ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
+                    className={`text-sm  font-bold topbarItem py-3 pr-5 hover:text-[#81C8C2] ${isCurrentPage('LIÊN HỆ') ? 'text-[#81C8C2]' : 'text-gray-600'}`}
                     onClick={() => handleButtonClick('LIÊN HỆ')}>
                     LIÊN HỆ
                 </NavLink>

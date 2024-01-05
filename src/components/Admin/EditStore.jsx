@@ -1,18 +1,16 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from "react-router";
 import {
     Form,
     Input,
-    InputNumber,
-    Select,
-    Upload,
     Button,
 } from 'antd';
 import { editStore, getStoreById } from '../../services';
 function EditStore() {
     const params = useParams()
     const [form] = Form.useForm()
+
 
     const getStore = async () => {
         try {
@@ -31,21 +29,26 @@ function EditStore() {
         }
     }
 
-    const onFinish = async (values) => {
-        const formData = new FormData();
-        formData.append("city", values.city)
-        formData.append("district", values.district)
-        formData.append("address", values.address)
-        formData.append("phoneNumber", values.phoneNumber)
-        formData.append("timeOpen", values.timeOpen)
-        formData.append("timeClose", values.timeClose)
-
+    const onFinish = async () => {
         try {
-            const result = await editStore(params.id, formData)
+            const values = form.getFieldsValue();
+            console.log('Values:', values);
+            console.log('Form:', form);
+            const newFormData = new FormData();
+            newFormData.append("city", values.city);
+            newFormData.append("district", values.district);
+            newFormData.append("address", values.address);
+            newFormData.append("phoneNumber", values.phoneNumber);
+            newFormData.append("timeOpen", values.timeOpen);
+            newFormData.append("timeClose", values.timeClose);
+
+            console.log('New FormData:', newFormData); // Thêm dòng log này
+
+            const result = await editStore(params.id, newFormData);
             console.log('new', result);
-            alert('update thành công')
+            alert('update thành công');
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     };
 
