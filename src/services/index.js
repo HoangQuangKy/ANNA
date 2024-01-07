@@ -22,8 +22,8 @@ export const deleteStore = (id) => {
     return AnnaInstance.delete(`/store/deleteStore/${id}`)
 }
 
-export const editStore = (id) => {
-    return AnnaInstance.put(`/store/editStore/${id}`)
+export const editStore = (id, data) => {
+    return AnnaInstance.put(`/store/${id}`, data)
 }
 
 export const getStoreById = (id) => {

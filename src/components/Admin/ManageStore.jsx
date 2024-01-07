@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getPagingStores } from '../../services'
 import { Pagination } from 'antd';
 import { Button } from 'antd';
 import { Link } from 'react-router-dom'
-import { Space, Table, Tag } from 'antd';
+import { Space, Table } from 'antd';
 import { deleteStore } from '../../services';
 
 function ManageStore() {
@@ -31,7 +31,7 @@ function ManageStore() {
 
     useEffect(() => {
         if (storeEdit) {
-            navigate(`/admin/manage_store/${storeEdit._id}`);
+            navigate(`/admin/update_store/${storeEdit._id}`);
         }
     }, [storeEdit]);
 
@@ -99,10 +99,10 @@ function ManageStore() {
     ];
     return (
         <div className='w-full min-h-full pt-5 pl-2'>
-            <Link to={'/admin/create_film'}>
+            <Link to={'/admin/create_store'}>
                 <Button
                     className=' py-1 mb-5 bg-sky-500 border-sky-500	text-white'
-                    type='primary'>Thêm phim mới
+                    type='primary'>Thêm mới
                 </Button>
             </Link>
             <Table

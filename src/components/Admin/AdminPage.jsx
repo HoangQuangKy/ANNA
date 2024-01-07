@@ -1,6 +1,5 @@
-import React from 'react';
 import CreateBlog from './CreateBlog.jsx'
-import { Routes, Route, Link, useLocation } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Menu } from 'antd'
 import {
     UserOutlined,
@@ -113,7 +112,7 @@ function AdminPage() {
                 <Route path='manage_product' />
                 <Route path='create_store' element={<CreateStore />} />
                 <Route path='manage_store' element={<ManageStore />} />
-                <Route path={`manage_store/:id`} element={<EditStore />}></Route>
+                <Route path={`update_store/:_id`} element={<EditStore />}></Route>
 
             </Routes>
         </div >

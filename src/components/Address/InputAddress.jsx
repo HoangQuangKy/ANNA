@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { getAllAddress, getSortAddress } from '../../services';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
@@ -22,6 +22,8 @@ function InputAddress() {
     const [districtName, setDistrictName] = useState("");
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
+    console.log('cities', cities);
+    console.log('districts', districts);
 
     const fetchCities = async () => {
         try {

@@ -1,51 +1,55 @@
-import React from 'react'
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 import {
     Form,
     Input,
     Button,
+    Select
 } from 'antd';
 import { editStore, getStoreById } from '../../services';
 function EditStore() {
+    const [cities, setCities] = useState('')
+    const [cityName, setCityName] = useState("");
+    const [districtName, setDistrictName] = useState("");
+    const [selectedCity, setSelectedCity] = useState('');
+    const [selectedDistrict, setSelectedDistrict] = useState('');
+    const [districts, setDistricts] = useState('')
     const params = useParams()
     const [form] = Form.useForm()
 
-
+    // cập nhật 
     const getStore = async () => {
         try {
-            const store = await getStoreById(params.id)
+            const store = await getStoreById(params._id)
+            console.log(store);
             const useData = store.data.getStore
+            console.log('useData', useData);
+
             form.setFieldsValue({
                 city: useData.city,
                 district: useData.district,
                 address: useData.address,
                 phoneNumber: useData.phoneNumber,
                 timeOpen: useData.timeOpen,
-                timeClose: useData.timeClose
-            })
+                timeClose: useData.timeClose,
+            });
         } catch (error) {
             console.log(error);
         }
     }
 
-    const onFinish = async () => {
+    const onFinish = async (values) => {
+        const newFormData = new FormData();
+        newFormData.append("city", values.city);
+        newFormData.append("district", values.district);
+        newFormData.append("address", values.address);
+        newFormData.append("phoneNumber", values.phoneNumber);
+        newFormData.append("timeOpen", values.timeOpen);
+        newFormData.append("timeClose", values.timeClose);
         try {
-            const values = form.getFieldsValue();
-            console.log('Values:', values);
-            console.log('Form:', form);
-            const newFormData = new FormData();
-            newFormData.append("city", values.city);
-            newFormData.append("district", values.district);
-            newFormData.append("address", values.address);
-            newFormData.append("phoneNumber", values.phoneNumber);
-            newFormData.append("timeOpen", values.timeOpen);
-            newFormData.append("timeClose", values.timeClose);
-
-            console.log('New FormData:', newFormData); // Thêm dòng log này
-
-            const result = await editStore(params.id, newFormData);
-            console.log('new', result);
+            const result = await editStore(params._id, newFormData);
             alert('update thành công');
         } catch (error) {
             console.log(error);
@@ -57,8 +61,6 @@ function EditStore() {
         if (value && !timeFormatRegex.test(value)) {
             return Promise.reject('Vui lòng nhập định dạng giờ:phút hợp lệ (HH:mm).');
         }
-
-
         return Promise.resolve();
     }
     const phoneValidation = (rule, value) => {
@@ -72,11 +74,40 @@ function EditStore() {
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
+
+    // call API for get all cities and districts
+
+    const fetchCities = async () => {
+        try {
+            const response = await axios.get('https://vapi.vnappmob.com/api/province/');
+            setCities(response.data.results)
+        } catch (error) {
+            console.error('Error fetching cities:', error);
+        }
+    };
+    const fetchDistricts = async () => {
+        if (selectedCity) {
+            try {
+                const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${selectedCity}`);
+                setDistricts(response.data.results)
+            } catch (error) {
+                console.error('Error fetching districts:', error);
+            }
+        }
+    };
     useEffect(() => {
-        if (params.id) {
+        if (params._id) {
             getStore()
         }
     }, [])
+    useEffect(() => {
+        fetchCities();
+    }, []);
+
+
+    useEffect(() => {
+        fetchDistricts();
+    }, [selectedCity]);
     return (
         <div className='bg-white w-full h-full ml-5 mt-5'>
             <h2 className='mb-3 ml-14 font-bold	text-xl	'>Thay đổi thông tin cửa hàng: </h2>
@@ -96,27 +127,33 @@ function EditStore() {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
-
+                encType="multipart/form-data"
             >
                 <Form.Item
                     label="City"
                     name='city'
+                    initialValue={form.city}
                 >
-                    <Input />
+                    <Select>
+
+                    </Select>
                 </Form.Item>
                 <Form.Item
                     label="District"
-                    name='district'>
+                    name='district'
+                    initialValue={form.district}>
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Address"
-                    name='address'>
+                    name='address'
+                    initialValue={form.address}>
                     <Input />
                 </Form.Item>
                 <Form.Item
                     label="Phone number"
                     name='phoneNumber'
+                    initialValue={form.phoneNumber}
                     rules={[
                         { required: true, message: 'Vui lòng nhập lại số điện thoại!' },
                         { validator: phoneValidation },
@@ -126,6 +163,7 @@ function EditStore() {
                 <Form.Item
                     label="Open"
                     name='timeOpen'
+                    initialValue={form.timeOpen}
                     rules={[
                         { required: true, message: 'Vui lòng nhập giờ mở cửa!' },
                         { validator: validation },
@@ -135,6 +173,7 @@ function EditStore() {
                 <Form.Item
                     label="Close"
                     name='timeClose'
+                    initialValue={form.timeClose}
                     rules={[
                         { required: true, message: 'Vui lòng nhập giờ đóng cửa!' },
                         { validator: validation },
