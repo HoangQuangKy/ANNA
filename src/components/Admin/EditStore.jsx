@@ -11,11 +11,34 @@ import {
 import { editStore, getStoreById } from '../../services';
 function EditStore() {
     const [cities, setCities] = useState('')
-    const [cityName, setCityName] = useState("");
-    const [districtName, setDistrictName] = useState("");
+    const [districts, setDistricts] = useState('')
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
-    const [districts, setDistricts] = useState('')
+    const [cityId, setCityId] = useState('')
+
+    const citiesSelect = []
+    const districtSelect = []
+    for (let index = 0; index < cities.length; index++) {
+        citiesSelect.push({
+            label: cities[index].province_name,
+            value: cities[index].province_name
+        })
+
+    }
+    for (let index = 0; index < districts.length; index++) {
+        districtSelect.push({
+            label: districts[index].district_name,
+            value: districts[index].district_name
+        })
+
+    }
+    const setId = () => {
+        if (Array.isArray(cities)) {
+            const cityName = cities.find((item) => item.province_name === selectedCity)
+            setCityId(cityName?.province_id)
+        }
+    }
+    console.log('citiesSelect', citiesSelect);
     const params = useParams()
     const [form] = Form.useForm()
 
@@ -41,6 +64,7 @@ function EditStore() {
     }
 
     const onFinish = async (values) => {
+        console.log('values', values);
         const newFormData = new FormData();
         newFormData.append("city", values.city);
         newFormData.append("district", values.district);
@@ -50,6 +74,7 @@ function EditStore() {
         newFormData.append("timeClose", values.timeClose);
         try {
             const result = await editStore(params._id, newFormData);
+            console.log('result', result);
             alert('update thành công');
         } catch (error) {
             console.log(error);
@@ -88,7 +113,7 @@ function EditStore() {
     const fetchDistricts = async () => {
         if (selectedCity) {
             try {
-                const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${selectedCity}`);
+                const response = await axios.get(`https://vapi.vnappmob.com/api/province/district/${cityId}`);
                 setDistricts(response.data.results)
             } catch (error) {
                 console.error('Error fetching districts:', error);
@@ -104,10 +129,14 @@ function EditStore() {
         fetchCities();
     }, []);
 
-
+    useEffect(() => {
+        setId()
+    }, [selectedCity])
     useEffect(() => {
         fetchDistricts();
     }, [selectedCity]);
+
+    console.log('setCities', selectedCity);
     return (
         <div className='bg-white w-full h-full ml-5 mt-5'>
             <h2 className='mb-3 ml-14 font-bold	text-xl	'>Thay đổi thông tin cửa hàng: </h2>
@@ -134,7 +163,13 @@ function EditStore() {
                     name='city'
                     initialValue={form.city}
                 >
-                    <Select>
+                    <Select
+                        mode='single'
+                        allowClear
+                        style={{ width: '100%' }}
+                        placeholder="Please choose the city"
+                        options={citiesSelect}
+                        onChange={(value) => setSelectedCity(value)}>
 
                     </Select>
                 </Form.Item>
@@ -142,7 +177,15 @@ function EditStore() {
                     label="District"
                     name='district'
                     initialValue={form.district}>
-                    <Input />
+                    <Select
+                        mode='single'
+                        allowClear
+                        style={{ width: '100%' }}
+                        placeholder="Please choose the city"
+                        options={districtSelect}
+                    >
+
+                    </Select>
                 </Form.Item>
                 <Form.Item
                     label="Address"
