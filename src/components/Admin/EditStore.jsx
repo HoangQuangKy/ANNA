@@ -13,9 +13,21 @@ function EditStore() {
     const [cities, setCities] = useState('')
     const [districts, setDistricts] = useState('')
     const [selectedCity, setSelectedCity] = useState('');
-    const [selectedDistrict, setSelectedDistrict] = useState('');
     const [cityId, setCityId] = useState('')
-
+    const [formValues, setFormValues] = useState({
+        city: '',
+        district: '',
+        address: '',
+        phoneNumber: '',
+        timeOpen: '',
+        timeClose: '',
+    });
+    const handleInputChange = (fieldName, value) => {
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            [fieldName]: value,
+        }));
+    };
     const citiesSelect = []
     const districtSelect = []
     for (let index = 0; index < cities.length; index++) {
@@ -38,7 +50,6 @@ function EditStore() {
             setCityId(cityName?.province_id)
         }
     }
-    console.log('citiesSelect', citiesSelect);
     const params = useParams()
     const [form] = Form.useForm()
 
@@ -63,21 +74,14 @@ function EditStore() {
         }
     }
 
-    const onFinish = async (values) => {
-        console.log('values', values);
-        const newFormData = new FormData();
-        newFormData.append("city", values.city);
-        newFormData.append("district", values.district);
-        newFormData.append("address", values.address);
-        newFormData.append("phoneNumber", values.phoneNumber);
-        newFormData.append("timeOpen", values.timeOpen);
-        newFormData.append("timeClose", values.timeClose);
+    const onFinish = async () => {
         try {
-            const result = await editStore(params._id, newFormData);
+            const result = await editStore(params._id, formValues);
             console.log('result', result);
-            alert('update thành công');
+            alert(`${result.data.message}`);
         } catch (error) {
             console.log(error);
+            alert(`${error.data.message}`);
         }
     };
 
@@ -110,6 +114,7 @@ function EditStore() {
             console.error('Error fetching cities:', error);
         }
     };
+
     const fetchDistricts = async () => {
         if (selectedCity) {
             try {
@@ -134,9 +139,7 @@ function EditStore() {
     }, [selectedCity])
     useEffect(() => {
         fetchDistricts();
-    }, [selectedCity]);
-
-    console.log('setCities', selectedCity);
+    }, [selectedCity, cityId]);
     return (
         <div className='bg-white w-full h-full ml-5 mt-5'>
             <h2 className='mb-3 ml-14 font-bold	text-xl	'>Thay đổi thông tin cửa hàng: </h2>
@@ -156,12 +159,10 @@ function EditStore() {
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
-                encType="multipart/form-data"
             >
                 <Form.Item
                     label="City"
                     name='city'
-                    initialValue={form.city}
                 >
                     <Select
                         mode='single'
@@ -169,20 +170,26 @@ function EditStore() {
                         style={{ width: '100%' }}
                         placeholder="Please choose the city"
                         options={citiesSelect}
-                        onChange={(value) => setSelectedCity(value)}>
+                        onChange={(value) => {
+                            setSelectedCity(value)
+                            handleInputChange('city', value);
+                        }}>
 
                     </Select>
                 </Form.Item>
                 <Form.Item
                     label="District"
                     name='district'
-                    initialValue={form.district}>
+                >
                     <Select
                         mode='single'
                         allowClear
                         style={{ width: '100%' }}
                         placeholder="Please choose the city"
                         options={districtSelect}
+                        onChange={(value) => {
+                            handleInputChange('district', value);
+                        }}
                     >
 
                     </Select>
@@ -190,45 +197,42 @@ function EditStore() {
                 <Form.Item
                     label="Address"
                     name='address'
-                    initialValue={form.address}>
-                    <Input />
+                >
+                    <Input onChange={(e) => handleInputChange('address', e.target.value)} />
                 </Form.Item>
                 <Form.Item
                     label="Phone number"
                     name='phoneNumber'
-                    initialValue={form.phoneNumber}
                     rules={[
                         { required: true, message: 'Vui lòng nhập lại số điện thoại!' },
                         { validator: phoneValidation },
                     ]}>
-                    <Input />
+                    <Input onChange={(e) => handleInputChange('phoneNumber', e.target.value)} />
                 </Form.Item>
                 <Form.Item
                     label="Open"
                     name='timeOpen'
-                    initialValue={form.timeOpen}
                     rules={[
                         { required: true, message: 'Vui lòng nhập giờ mở cửa!' },
                         { validator: validation },
                     ]}>
-                    <Input />
+                    <Input onChange={(e) => handleInputChange('timeOpen', e.target.value)} />
                 </Form.Item>
                 <Form.Item
                     label="Close"
                     name='timeClose'
-                    initialValue={form.timeClose}
                     rules={[
                         { required: true, message: 'Vui lòng nhập giờ đóng cửa!' },
                         { validator: validation },
                     ]}>
-                    <Input />
+                    <Input onChange={(e) => handleInputChange('timeClose', e.target.value)} />
                 </Form.Item>
 
                 <Button className='mt-5' htmlType="submit">
                     Submit
                 </Button>
             </Form>
-        </div>
+        </div >
     )
 }
 

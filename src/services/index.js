@@ -29,3 +29,6 @@ export const editStore = (id, data) => {
 export const getStoreById = (id) => {
     return AnnaInstance.get(`/store/getStoreById/${id}`)
 }
+export const createNewStore = (data) => {
+    return AnnaInstance.post('/store/create-new-store', data)
+}

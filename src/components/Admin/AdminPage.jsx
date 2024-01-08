@@ -51,16 +51,6 @@ const items = [
             { key: '10', label: 'Thông tin cửa hàng', icon: <SwitcherOutlined />, path: 'manage_store' },
 
         ]
-    },
-    {
-        key: 'sub4',
-        label: 'Quản lí bài viết',
-        icon: <VideoCameraOutlined />,
-        children: [
-            { key: '11', label: 'Thêm bài viết mới', icon: <VideoCameraAddOutlined />, path: 'create_blog' },
-            { key: '12', label: 'Thông tin bài viết', icon: <SwitcherOutlined />, path: 'manage_blog' },
-
-        ]
     }
 ];
 
@@ -91,7 +81,7 @@ function AdminPage() {
                     ))}
                 </div>
                 <Menu
-                    className='w-[256px]'
+                    className='w-[280px]'
                     mode='inline'
                     theme='dark'
                 >
@@ -103,8 +93,6 @@ function AdminPage() {
                 </Menu>
             </div>
             <Routes>
-                <Route path='create_blog' element={<CreateBlog />} />
-                <Route path='manage_blog' element={<ManageBlog />} />
                 <Route path='create_user' />
                 <Route path='update_user' />
                 <Route path='manage_user' />
