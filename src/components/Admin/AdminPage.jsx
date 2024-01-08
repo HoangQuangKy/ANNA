@@ -1,4 +1,3 @@
-import CreateBlog from './CreateBlog.jsx'
 import { Routes, Route, Link } from 'react-router-dom';
 import { Menu } from 'antd'
 import {
@@ -12,7 +11,6 @@ import {
     SwitcherOutlined,
     LogoutOutlined
 } from '@ant-design/icons';
-import ManageBlog from './ManageBlog.jsx';
 import CreateStore from './CreateStore.jsx';
 import ManageStore from './ManageStore.jsx';
 import EditStore from './EditStore.jsx';
