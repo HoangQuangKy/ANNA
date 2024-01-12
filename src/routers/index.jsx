@@ -6,6 +6,7 @@ import Address from '../components/Address/Address';
 import ForAnna from '../components/ForAnna/ForAnna';
 import KindJourney from '../components/KindJourney/KindJourney';
 import AdminPage from '../components/Admin/AdminPage';
+import Cart from '../components/Cart/Cart';
 
 function AppRouter() {
     return (
@@ -16,6 +17,7 @@ function AppRouter() {
             <Route path='/hanh-trinh-tu-te' element={<KindJourney />} />
             <Route path='/ve-anna' element={<ForAnna />} />
             <Route path='/admin/*' element={<AdminPage />}></Route>
+            <Route path='/gio-hang' element={<Cart />}></Route>
         </Routes>
     );
 }

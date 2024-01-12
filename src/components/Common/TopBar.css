@@ -1,0 +1,10 @@
+.scrolled {
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    /* Đặt màu nền cho TopBar khi cuộn */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Hiệu ứng bóng đổ */
+    z-index: 1000;
+    /* Đảm bảo TopBar hiển thị trên cùng */
+}
