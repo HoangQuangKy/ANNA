@@ -7,6 +7,8 @@ import ForAnna from '../components/ForAnna/ForAnna';
 import KindJourney from '../components/KindJourney/KindJourney';
 import AdminPage from '../components/Admin/AdminPage';
 import Cart from '../components/Cart/Cart';
+import Blog from '../components/Blog/Blog';
+import Payment from '../components/Payment/Payment';
 
 function AppRouter() {
     return (
@@ -15,6 +17,8 @@ function AppRouter() {
             <Route path='/login' element={<LogIn />} />
             <Route path='/hệ-thống-cửa-hàng' element={<Address />}></Route>
             <Route path='/hanh-trinh-tu-te' element={<KindJourney />} />
+            <Route path='/blog' element={<Blog />} />
+            <Route path='/thanh-toan' element={<Payment />} />
             <Route path='/ve-anna' element={<ForAnna />} />
             <Route path='/admin/*' element={<AdminPage />}></Route>
             <Route path='/gio-hang' element={<Cart />}></Route>
