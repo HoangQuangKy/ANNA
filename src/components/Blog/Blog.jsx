@@ -1,6 +1,9 @@
 import Layout from "../Layout"
+import { Card } from "antd"
+import {data} from '../../../fakeData/fakeData'
 
 const Blog = () => {
+  
     return (
         <div>
             <Layout style='null'>
@@ -16,8 +19,14 @@ const Blog = () => {
                         </div>
                     </div>
                 </div>
-                <div className="container mx-32">
-
+                <div className="container mx-32 flex flex-wrap gap-5 mt-10">
+                    {data.map(i => (
+                        <a key={i.source.id} className="w-1/5" href={i.url} target="blank">
+                            <Card  title={i.title} className="mb-5 w-full" cover={<img alt="example" src={i.urlToImage}/>}>
+                                <p>{i.content}</p>
+                            </Card>
+                        </a>
+                    ))}
                 </div>
             </Layout>
         </div>
